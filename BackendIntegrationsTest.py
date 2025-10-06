@@ -84,8 +84,11 @@ def chunks(lista, tamaño):
 
 
 for bloque in chunks(listaOrdenadaToRequest, 500):
-    response = requests.post(url, json=bloque)
-    print("Código de estado:", response.status_code)
+    try:
+        response = requests.post(url, json=bloque)
+        print("Código de estado:", response.status_code)
+    except requests.exceptions.RequestException as e:
+        print("Error al enviar el bloque:", e)
 
 
        
